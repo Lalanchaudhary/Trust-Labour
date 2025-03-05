@@ -19,7 +19,7 @@ const StartScreen = () => {
           <Text style={styles.Rgister_button_text}>Register</Text>
         </TouchableOpacity>
         <Text>or</Text>
-        <TouchableOpacity style={styles.Rgister_button} onPress={()=>{navigation.navigate("Adhar")}}>
+        <TouchableOpacity style={styles.Rgister_button} onPress={()=>{navigation.navigate("login")}}>
           <Text style={styles.Rgister_button_text}>Login</Text>
         </TouchableOpacity>
       </View>

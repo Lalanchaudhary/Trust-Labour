@@ -3,8 +3,8 @@ import { Text, StyleSheet, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import Icon1 from 'react-native-vector-icons/AntDesign';
-import Home from './Screens/Home';
-import Profile from './Screens/Profile';
+import Home from './Screens/Home/Home';
+import Profile from './Screens/Home/Profile';
 
 const BottomLayout = () => {
   const Tab = createBottomTabNavigator();

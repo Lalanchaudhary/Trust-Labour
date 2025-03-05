@@ -3,9 +3,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 
 const OtpScreen = ({ route, navigation }) => {
-  const { client_id } = route.params;
+  const { client_id = '', generateOtp = () => {} } = route.params || {};
   // console.log('Client id=', client_id);
-
+  const [loading,setLoading]=useState(false);
   const box1 = useRef();
   const box2 = useRef();
   const box3 = useRef();
@@ -40,20 +40,28 @@ const OtpScreen = ({ route, navigation }) => {
   }, [f1, f2, f3, f4, f5, f6]);
 
   const VerifyOtp = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(
         'https://kyc-api.surepass.io/api/v1/aadhaar-v2/submit-otp',
         { client_id: client_id, otp: userOtp },
-        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
+        { headers: { Authorization:` Bearer ${token}, 'Content-Type': 'application/json'` } }
       );
       if (response.data.success) {
-        console.log('Aadhar Data:', response.data.data);
-        navigation.navigate('display');
+        navigation.navigate('signup',{data:response.data.data});
       }
     } catch (err) {
       console.log(err);
     }
+    finally{
+      setLoading(false)
+    }
   };
+
+  const ResendOtp=()=>{
+    count == 0 && setCount(60);
+    generateOtp();
+  }
 
   return (
     <View style={styles.Body}>
@@ -129,7 +137,7 @@ const OtpScreen = ({ route, navigation }) => {
       <View style={styles.resend_view}>
         <Text
           style={[styles.resend, { color: count == 0 ? '#08910f' : 'grey' }]}
-          onPress={() => count == 0 && setCount(60)}
+          onPress={ResendOtp}
         >
           Resend OTP
         </Text>
@@ -143,7 +151,7 @@ const OtpScreen = ({ route, navigation }) => {
         onPress={VerifyOtp}
         disabled={userOtp.length !== 6}
       >
-        <Text style={styles.verify_text}>Verify OTP</Text>
+        <Text style={styles.verify_text}>{!loading?'Verify OTP':'Verifying...'}</Text>
       </TouchableOpacity>
     </View>
   );

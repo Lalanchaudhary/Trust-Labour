@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "966327389236",
+    "project_id": "trustlabour-680aa",
+    "storage_bucket": "trustlabour-680aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966327389236:android:516c0e9375edae4a41ce61",
+        "android_client_info": {
+          "package_name": "com.newapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAev1x94B-OyOREeVaOTcllIZI5CLkKLnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
